@@ -1,0 +1,35 @@
+<h1><%= title %></h1>
+<form action="" method="post">
+  <label for="first-name">First Name</label>
+  <input
+    type="text"
+    name="first-name"
+    placeholder="First Name"
+    value="<%= locals.firstName === undefined ? '' : firstName %>"
+  />
+  <label for="last-name">Last Name</label>
+  <input
+    type="text"
+    name="last-name"
+    placeholder="Last Name"
+    value="<%= locals.lastName === undefined ? '' : lastName %>"
+  />
+  <label for="username">Username</label>
+  <input
+    type="text"
+    name="username"
+    placeholder="username"
+    value="<%= locals.username === undefined ? '' : username %>"
+  />
+  <label for="password">Password</label>
+  <input type="password" name="password" placeholder="Password" />
+  <label for="confirm-password">Confirm Password</label>
+  <input
+    type="password"
+    name="confirm-password"
+    placeholder="Confirm Password"
+  />
+  <button>Sign Up</button>
+</form>
+<p>Already have an account? <a href="#">Login</a></p>
+<% if(locals.errors) { %> <%- include('form-errors', {errors}); %> <% } %>
