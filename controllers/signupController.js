@@ -26,6 +26,12 @@ exports.signup_post = [
     .trim()
     .isLength({ min: 6 })
     .escape(),
+  body("confirm-password").custom((value, { req }) => {
+    if (value !== req.body.password) {
+      throw new Error("Password confirmation does not match password");
+    }
+    return true;
+  }),
   // Process request after validation and sanitization
   async (req, res, next) => {
     // Extract the validation errors from a request
