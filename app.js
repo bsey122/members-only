@@ -6,7 +6,6 @@ var logger = require("morgan");
 const mongoose = require("mongoose");
 const session = require("express-session");
 const passport = require("passport");
-const LocalStrategy = require("passport-local");
 require("dotenv").config();
 
 var indexRouter = require("./routes/index");
