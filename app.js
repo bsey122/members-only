@@ -25,6 +25,19 @@ db.on("error", console.error.bind(console, "mongo connection error"));
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+// set up authentication
+app.use(
+  session({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(express.urlencoded({ extended: false }));
+
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
