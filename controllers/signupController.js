@@ -61,13 +61,9 @@ exports.signup_post = [
           username: req.body.username,
           password: hashedPassword,
         });
-        user.save((err) => {
-          if (err) {
-            return next(err);
-          }
-          // Successful - redirect to login
-          res.redirect("/login");
-        });
+        await user.save();
+        // Successful - redirect to login
+        res.redirect("/login");
       });
     } catch (error) {
       return next(error);
