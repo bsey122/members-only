@@ -1,0 +1,17 @@
+<% if (currentUser) { %>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/member">Member</a></li>
+    <li><a href="/log-out">Log Out</a></li>
+  </ul>
+</nav>
+<% } else { %>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/login">Login</a></li>
+    <li><a href="/sign-up">Sign Up</a></li>
+  </ul>
+</nav>
+<% } %>
