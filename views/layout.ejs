@@ -7,15 +7,7 @@
     <title><%= title %></title>
   </head>
   <body>
-    <header>
-      <nav>
-        <ul>
-          <li><a href="/">Home</a></li>
-          <li><a href="/login">Login</a></li>
-          <li><a href="/sign-up">Sign Up</a></li>
-        </ul>
-      </nav>
-    </header>
+    <header><%- include('navbar') %></header>
     <div><%- include(content); %></div>
   </body>
 </html>
