@@ -13,4 +13,6 @@ router.get(
 // Post request to update User
 router.post("/member", userRouter.member_update_post);
 
+// Get request to update User to admin
+router.get("/admin", userRouter.redirect_to_login, userRouter.admin_update_get);
 module.exports = router;
