@@ -45,3 +45,8 @@ exports.redirect_to_login = function (req, res, next) {
   }
   next();
 };
+
+// Display admin form on Get
+exports.admin_update_get = function (req, res, next) {
+  res.render("layout", { title: "Admin", content: "admin" });
+};
