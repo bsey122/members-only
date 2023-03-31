@@ -1,0 +1,10 @@
+<% if (member) { %>
+<h1>You are already a member!</h1>
+<% } else { %>
+<h1><%= title %></h1>
+<form action="" method="post">
+  <label for="passcode">Passcode</label>
+  <input type="text" name="passcode" />
+  <button>Become a member!</button>
+</form>
+<% } %> <% if(locals.errors) { %> <%- include('form-errors'); %> <% } %>
