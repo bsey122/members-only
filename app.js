@@ -51,6 +51,7 @@ app.use(function (req, res, next) {
   res.locals.currentUser = req.user;
   if (req.user !== undefined) {
     res.locals.member = req.user.member;
+    res.locals.admin = req.user.admin;
   }
   next();
 });
