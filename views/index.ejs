@@ -1,0 +1,35 @@
+<h1>Messages</h1>
+<% if (currentUser) { %>
+<p>Welcome <%= currentUser.username %></p>
+<a href="/new-message">Create new message</a>
+<% if (member) { %>
+<div>
+  <% messageList.forEach((message) => { %>
+  <div>
+    <h2><%= message.title %></h2>
+    <p><%= message.text %></p>
+    <p>Post by <%= message.user.firstName %> on <%= message.date %></p>
+  </div>
+  <% }); %>
+</div>
+<% } else { %>
+<div>
+  <% messageList.forEach((message) => { %>
+  <div>
+    <h2><%= message.title %></h2>
+    <p><%= message.text %></p>
+    <p>Post by anonymous user on anonymous date</p>
+  </div>
+  <% }); %>
+</div>
+<% } %> <% } else { %>
+<div>
+  <% messageList.forEach((message) => { %>
+  <div>
+    <h2><%= message.title %></h2>
+    <p><%= message.text %></p>
+    <p>Post by anonymous user on anonymous date</p>
+  </div>
+  <% }); %>
+</div>
+<% } %>
