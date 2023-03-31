@@ -18,3 +18,11 @@ exports.member_update_post = async (req, res, next) => {
     return next(error);
   }
 };
+
+// Redirect to login page if User is not logged in
+exports.redirect_to_login = function (req, res, next) {
+  if (req.user === undefined) {
+    res.redirect("/login");
+  }
+  next();
+};
