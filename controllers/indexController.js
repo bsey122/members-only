@@ -6,7 +6,6 @@ exports.index = async (req, res, next) => {
   // Successful, so render
   res.render("layout", {
     title: "Members Only",
-    user: req.user,
     messageList,
     content: "index",
   });
