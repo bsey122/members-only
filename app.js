@@ -45,6 +45,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+// get user variables for views
+app.use(function (req, res, next) {
+  // set locals
+  res.locals.currentUser = req.user;
+  if (req.user !== undefined) {
+    res.locals.member = req.user.member;
+  }
+  next();
+});
+
 app.use("/", indexRouter);
 app.use("/", usersRouter);
 app.use("/sign-up", signupRouter);
