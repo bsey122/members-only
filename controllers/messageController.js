@@ -44,3 +44,15 @@ exports.message_create_post = [
     }
   },
 ];
+
+// Handle Message delete on Post
+exports.message_delete_post = async (req, res, next) => {
+  // Assume valid Message id
+  try {
+    await Message.findByIdAndRemove(req.body.messageid);
+    // Success - redirect to home page
+    res.redirect("/");
+  } catch (error) {
+    return next(error);
+  }
+};
