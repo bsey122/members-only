@@ -10,4 +10,7 @@ router.get("/", messageController.message_create_get);
 // Post request for creating Message
 router.post("/", messageController.message_create_post);
 
+// Post request for deleting Message
+router.post("/delete-message/:id", messageController.message_delete_post);
+
 module.exports = router;
