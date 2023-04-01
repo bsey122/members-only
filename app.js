@@ -59,7 +59,7 @@ app.use("/", usersRouter);
 app.use("/sign-up", signupRouter);
 app.use("/login", loginRouter);
 app.use("/log-out", logoutRouter);
-app.use("/new-message", messageRouter);
+app.use("/", messageRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
