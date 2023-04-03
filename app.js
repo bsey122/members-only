@@ -55,10 +55,17 @@ app.use(function (req, res, next) {
 });
 
 app.use("/", indexRouter);
-app.use("/", usersRouter);
 app.use("/sign-up", signupRouter);
 app.use("/login", loginRouter);
 app.use("/log-out", logoutRouter);
+// Redirect to login page if User is not logged in
+app.use(function (req, res, next) {
+  if (req.user === undefined) {
+    return res.redirect("/login");
+  }
+  next();
+});
+app.use("/", usersRouter);
 app.use("/", messageRouter);
 
 // catch 404 and forward to error handler
