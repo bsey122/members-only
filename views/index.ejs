@@ -2,27 +2,30 @@
 <% if (currentUser) { %>
 <p>Welcome <%= currentUser.username %></p>
 <a href="/new-message">Create new message</a>
-<% if (member) { %>
+<% } %> <% if (member === true || admin === true) { %>
 <div>
   <% messageList.forEach((message) => { %>
   <div>
     <h2><%= message.title %></h2>
     <p><%= message.text %></p>
-    <p>Post by <%= message.user.firstName %> on <%= message.date %></p>
+    <p>
+      Post by <%= message.user.firstName %> on <%= message.date_formatted %>
+    </p>
+    <% if (admin) { %>
+    <form action="/delete-message/<%= message._id %>" method="post">
+      <input
+        type="hidden"
+        name="messageid"
+        required
+        value="<%= message._id %>"
+      />
+      <button>Delete</button>
+    </form>
+    <% } %>
   </div>
   <% }); %>
 </div>
 <% } else { %>
-<div>
-  <% messageList.forEach((message) => { %>
-  <div>
-    <h2><%= message.title %></h2>
-    <p><%= message.text %></p>
-    <p>Post by anonymous user on anonymous date</p>
-  </div>
-  <% }); %>
-</div>
-<% } %> <% } else { %>
 <div>
   <% messageList.forEach((message) => { %>
   <div>
