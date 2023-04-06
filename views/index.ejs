@@ -1,38 +1,54 @@
-<h1>Messages</h1>
-<% if (currentUser) { %>
-<p>Welcome <%= currentUser.username %></p>
-<a href="/new-message">Create new message</a>
-<% } %> <% if (member === true || admin === true) { %>
-<div>
-  <% messageList.forEach((message) => { %>
-  <div>
-    <h2><%= message.title %></h2>
-    <p><%= message.text %></p>
-    <p>
-      Post by <%= message.user.firstName %> on <%= message.date_formatted %>
-    </p>
-    <% if (admin) { %>
-    <form action="/delete-message/<%= message._id %>" method="post">
-      <input
-        type="hidden"
-        name="messageid"
-        required
-        value="<%= message._id %>"
-      />
-      <button>Delete</button>
-    </form>
-    <% } %>
+<div class="flex flex-col items-center py-12 px-6 lg:px-8">
+  <h1 class="mt-6 text-3xl font-extrabold text-violet-600">Messages</h1>
+  <% if (currentUser) { %>
+  <p class="text-neutral-900">Welcome <%= currentUser.username %></p>
+  <a href="/new-message" class="text-violet-500 hover:text-violet-700 underline"
+    >Create new message</a
+  >
+  <% } %> <% if (member === true || admin === true) { %>
+  <div class="my-3">
+    <% messageList.forEach((message) => { %>
+    <div class="my-2 p-4 bg-white shadow rounded-md w-96">
+      <h2 class="text-lg text-neutral-900 py-1 font-bold">
+        <%= message.title %>
+      </h2>
+      <p class="py-1 text-neutral-600"><%= message.text %></p>
+      <p class="text-sm text-neutral-600 py-1">
+        Post by <%= message.user.firstName %> on <%= message.date_formatted %>
+      </p>
+      <% if (admin) { %>
+      <form
+        action="/delete-message/<%= message._id %>"
+        method="post"
+        class="pt-3 w-fit mr-0 m-auto"
+      >
+        <input
+          type="hidden"
+          name="messageid"
+          required
+          value="<%= message._id %>"
+        />
+        <button class="font-bold bg-red-500 py-1 px-3 rounded-sm text-white">
+          Delete
+        </button>
+      </form>
+      <% } %>
+    </div>
+    <% }); %>
   </div>
-  <% }); %>
-</div>
-<% } else { %>
-<div>
-  <% messageList.forEach((message) => { %>
-  <div>
-    <h2><%= message.title %></h2>
-    <p><%= message.text %></p>
-    <p>Post by anonymous user on anonymous date</p>
+  <% } else { %>
+  <div class="my-3">
+    <% messageList.forEach((message) => { %>
+    <div class="my-2 p-4 bg-white shadow rounded-md w-96">
+      <h2 class="text-lg text-neutral-900 py-1 font-bold">
+        <%= message.title %>
+      </h2>
+      <p class="py-1 text-neutral-600"><%= message.text %></p>
+      <p class="text-sm text-neutral-600 py-1">
+        Post by anonymous user on anonymous date
+      </p>
+    </div>
+    <% }); %>
   </div>
-  <% }); %>
+  <% } %>
 </div>
-<% } %>
