@@ -27,6 +27,7 @@ exports.message_create_post = [
         errors: errors.array(),
         content: "new-message",
       });
+      return;
     }
     // Data from form is valid
     try {
