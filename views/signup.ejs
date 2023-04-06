@@ -1,35 +1,85 @@
-<h1><%= title %></h1>
-<form action="" method="post">
-  <label for="first-name">First Name</label>
-  <input
-    type="text"
-    name="first-name"
-    placeholder="First Name"
-    value="<%= locals.firstName === undefined ? '' : firstName %>"
-  />
-  <label for="last-name">Last Name</label>
-  <input
-    type="text"
-    name="last-name"
-    placeholder="Last Name"
-    value="<%= locals.lastName === undefined ? '' : lastName %>"
-  />
-  <label for="username">Username</label>
-  <input
-    type="text"
-    name="username"
-    placeholder="username"
-    value="<%= locals.username === undefined ? '' : username %>"
-  />
-  <label for="password">Password</label>
-  <input type="password" name="password" placeholder="Password" />
-  <label for="confirm-password">Confirm Password</label>
-  <input
-    type="password"
-    name="confirm-password"
-    placeholder="Confirm Password"
-  />
-  <button>Sign Up</button>
-</form>
-<p>Already have an account? <a href="/login">Login</a></p>
-<% if(locals.errors) { %> <%- include('form-errors'); %> <% } %>
+<div class="flex flex-col items-center py-12 px-6 lg:px-8">
+  <h2 class="mt-6 text-3xl font-extrabold text-neutral-900"><%= title %></h2>
+  <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
+    <div class="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
+      <form action="" method="post" class="mb-0 space-y-6">
+        <div>
+          <label
+            for="first-name"
+            class="block text-sm font-medium text-gray-700"
+            >First Name</label
+          >
+          <input
+            type="text"
+            name="first-name"
+            placeholder="First Name"
+            value="<%= locals.firstName === undefined ? '' : firstName %>"
+            class="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+          />
+        </div>
+        <div>
+          <label for="last-name" class="block text-sm font-medium text-gray-700"
+            >Last Name</label
+          >
+          <input
+            type="text"
+            name="last-name"
+            placeholder="Last Name"
+            value="<%= locals.lastName === undefined ? '' : lastName %>"
+            class="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+          />
+        </div>
+        <div>
+          <label for="username" class="block text-sm font-medium text-gray-700"
+            >Username</label
+          >
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            value="<%= locals.username === undefined ? '' : username %>"
+            class="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+          />
+        </div>
+        <div>
+          <label for="password" class="block text-sm font-medium text-gray-700"
+            >Password</label
+          >
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            class="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+          />
+        </div>
+        <div>
+          <label
+            for="confirm-password"
+            class="block text-sm font-medium text-gray-700"
+            >Confirm Password</label
+          >
+          <input
+            type="password"
+            name="confirm-password"
+            placeholder="Confirm Password"
+            class="w-full border border-gray-300 px-3 py-2 rounded-lg shadow-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500"
+          />
+        </div>
+        <button
+          class="w-full bg-violet-600 hover:bg-violet-700 py-2 px-4 text-white text-sm font-medium rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+        >
+          Sign Up
+        </button>
+      </form>
+      <p class="mt-2 text-sm text-gray-600">
+        Already have an account?
+        <a
+          href="/login"
+          class="text-violet-600 hover:text-violet-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          >Login</a
+        >
+      </p>
+    </div>
+  </div>
+  <% if(locals.errors) { %> <%- include('form-errors'); %> <% } %>
+</div>
