@@ -1,17 +1,27 @@
-<% if (currentUser) { %>
-<nav>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/member">Member</a></li>
-    <li><a href="/log-out">Log Out</a></li>
+<nav class="bg-violet-900 shadow">
+  <% if (currentUser) { %>
+  <ul class="py-2 px-10 w-fit mr-0 ml-auto">
+    <li class="inline px-1">
+      <a href="/" class="text-white hover:text-violet-300">Home</a>
+    </li>
+    <li class="inline px-1">
+      <a href="/member" class="text-white hover:text-violet-300">Member</a>
+    </li>
+    <li class="inline px-1">
+      <a href="/log-out" class="text-white hover:text-violet-300">Log Out</a>
+    </li>
   </ul>
-</nav>
-<% } else { %>
-<nav>
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/login">Login</a></li>
-    <li><a href="/sign-up">Sign Up</a></li>
+  <% } else { %>
+  <ul class="py-2 px-10 w-fit mr-0 ml-auto gr">
+    <li class="inline px-1">
+      <a href="/" class="text-white hover:text-violet-300">Home</a>
+    </li>
+    <li class="inline px-1">
+      <a href="/login" class="text-white hover:text-violet-300">Login</a>
+    </li>
+    <li class="inline px-1">
+      <a href="/sign-up" class="text-white hover:text-violet-300">Sign Up</a>
+    </li>
   </ul>
+  <% } %>
 </nav>
-<% } %>
