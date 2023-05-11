@@ -10,9 +10,9 @@
     <% messageList.forEach((message) => { %>
     <div class="my-2 p-4 bg-white shadow rounded-md w-96">
       <h2 class="text-lg text-neutral-900 py-1 font-bold">
-        <%= message.title %>
+        <%- message.title %>
       </h2>
-      <p class="py-1 text-neutral-600"><%= message.text %></p>
+      <p class="py-1 text-neutral-600"><%- message.text %></p>
       <p class="text-sm text-neutral-600 py-1">
         Post by <%= message.user.firstName %> on <%= message.date_formatted %>
       </p>
@@ -41,9 +41,9 @@
     <% messageList.forEach((message) => { %>
     <div class="my-2 p-4 bg-white shadow rounded-md w-96">
       <h2 class="text-lg text-neutral-900 py-1 font-bold">
-        <%= message.title %>
+        <%- message.title %>
       </h2>
-      <p class="py-1 text-neutral-600"><%= message.text %></p>
+      <p class="py-1 text-neutral-600"><%- message.text %></p>
       <p class="text-sm text-neutral-600 py-1">
         Post by anonymous user on anonymous date
       </p>
