@@ -34,22 +34,35 @@ exports.signup_post = [
   }),
   // Process request after validation and sanitization
   async (req, res, next) => {
-    // Extract the validation errors from a request
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      // There are errors. Render form again with sanitized values/errors
-      res.render("layout", {
-        title: "Sign Up",
-        firstName: req.body["first-name"],
-        lastName: req.body["last-name"],
-        username: req.body.username,
-        errors: errors.array(),
-        content: "signup",
-      });
-      return;
-    }
-    // Data from form is valid
     try {
+      // Extract the validation errors from a request
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        // There are errors. Render form again with sanitized values/errors
+        res.render("layout", {
+          title: "Sign Up",
+          firstName: req.body["first-name"],
+          lastName: req.body["last-name"],
+          username: req.body.username,
+          errors: errors.array(),
+          content: "signup",
+        });
+        return;
+      }
+      // Data from form is valid
+      // Check if the user is in the database
+      const oldUser = await User.findOne({ username: req.body.username });
+      if (oldUser) {
+        res.render("layout", {
+          title: "Sign Up",
+          firstName: req.body["first-name"],
+          lastName: req.body["last-name"],
+          errors: [{ msg: "User already exists" }],
+          content: "signup",
+        });
+        console.log(oldUser);
+        return;
+      }
       bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
         if (err) {
           return next(err);
