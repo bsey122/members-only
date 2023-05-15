@@ -15,10 +15,13 @@ const loginRouter = require("./routes/login");
 const logoutRouter = require("./routes/logout");
 const messageRouter = require("./routes/message");
 
+const compression = require("compression");
+const helmet = require("helmet");
+const RateLimit = require("express-rate-limit");
 var app = express();
 
 // set up mongoose connection
-const mongoDB = process.env.MONGODB_DEV_URL;
+const mongoDB = process.env.MONGODB_URL;
 mongoose.connect(mongoDB, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
@@ -35,6 +38,12 @@ app.use(
   })
 );
 
+// Set up rate limiter: maximum of twenty requests per minute
+const limiter = RateLimit({
+  windowMs: 1 * 60 * 1000,
+  max: 20,
+});
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));
@@ -43,6 +52,9 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(compression()); // Compress all routes
+app.use(helmet()); // Use helmet
+app.use(limiter); // Apply rate limiter to all requests
 app.use(express.static(path.join(__dirname, "public")));
 
 // get user variables for views
